@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  width: 100vw;
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+  max-height: 100vh;
+  min-width: 100vw;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.image {
+  height:100vh;
+  max-width: 50vw;
+  filter: brightness(30%); 
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style-type: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.artist-name {
+  font-size: 3vw;
+  padding: 3px;
+}
+
+.has {
+  font-size: 1.5vw;
+  padding: 3px;
+}
+
+.number {
+  font-size: 3.5vw;
+  color: yellow;
+  padding: 3px;
+}
+
+.circle {
+  background-color: white;
+  border-radius: 360px;
+  padding: 3.5vw;
+  height: 0vw;
+  width: 0vw;
+  font-family: 'Montserrat', sans-serif;
+  color: #282c34;
+  font-size: 2.25vw;
+}
+
+.wrong {
+  background: red;
+}
+
+.score {
+  color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5vw;
+  position: absolute;
+  top: 95%;
+  right: 1%;
+}
+
+.custom-button {
+  background-color: rgba(0,0,0,0);
+  color: yellow;
+  padding: 1vw 5vw;
+  border-radius: 30px;
+  border: solid;
+  border-width: 3px;
+  border-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25vw;
+  display: flex;
+}
+
+.custom-button:hover {
+  color:  rgba(0,0,0,1);
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.higher {
+  color: green;
+}
+
+.lower {
+  color: red;
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -o-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+.button-container {
+  padding: 10px;
+  padding-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-buffer {
+  padding-top: 10px;
+}
