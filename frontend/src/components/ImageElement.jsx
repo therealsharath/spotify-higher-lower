@@ -4,12 +4,17 @@ import Counter from './Counter.jsx';
 function ImageElement(props) {
     const [isToggled, setToggle] = useState(props.side)
 
-    const handleClick = (e) => {
+    const timeout = (delay) => {
+        return new Promise(res => setTimeout(res, delay));
+    }
+
+    const handleClick = async(e) => {
         setToggle(!isToggled);
         if(e === (props.followers > props.logic) || (props.logic === props.followers)) {
             props.handle()
         } else {
-            console.log('You lose')
+            await timeout(3000)
+            window.location.href = "/";
         }
     }
 

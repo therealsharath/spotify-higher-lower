@@ -1,31 +1,30 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ImageElement from './ImageElement.jsx';
-
-const image = "https://images.pexels.com/photos/7096/people-woman-coffee-meeting.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+import { getArtist } from './GetArtist';
 
 function MainWrapper() {
-    const [elements, setElements] = useState([
-        {name:'A', followers:230000, side:true, higher:0, prev:'none', image:image},
-        {name:'B',followers:220000, side:false, higher:230000, prev:'A', image:image}
-    ])
+    const [elements, setElements] = useState([])
     const [animationState, setAnimationState] = useState({ x: 0 })
     const [score, setScore] = useState(0)
 
+    useEffect(() => {
+        async function redemption() {
+            let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
+            setElements(response)
+        }
+        redemption()
+    },[elements])
+
     const timeout = (delay) => {
-        let newElements = elements
-        let followers = 270000
-        let last = newElements[newElements.length-1]
-        let higher = last['followers']
-        let prev = last['name']
-        newElements.push({name: 'C',followers:followers, side:false, higher:higher, prev:prev, image:image})
-        setElements(newElements)
         return new Promise(res => setTimeout(res, delay));
     }
     
     const windowWidth = window.innerWidth/2
 
     const handle = async() => {
+        const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1))
+        setElements(response)
         await timeout(3000);
         setScore(score + 1)
         let k = animationState['x'] - windowWidth
@@ -36,7 +35,7 @@ function MainWrapper() {
         <div className="main-container">
             <motion.div className="main-container" animate={animationState} transition={{ duration: 1 }}>
             {
-                elements.map((item) => 
+                (elements.length > 1) && elements.map((item) => 
                     <ImageElement name={item.name} followers={item.followers} handle={handle} side={item.side} logic={item.higher} prev={item.prev} image={item.image}/>
             )}
             </motion.div>
