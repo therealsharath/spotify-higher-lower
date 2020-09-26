@@ -13,7 +13,9 @@ function MainWrapper() {
             let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
             setElements(response)
         }
-        redemption()
+        if(elements.length < 10) {
+            redemption()
+        }
     },[elements])
 
     const timeout = (delay) => {
@@ -25,7 +27,7 @@ function MainWrapper() {
     const handle = async() => {
         const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1))
         setElements(response)
-        await timeout(3000);
+        await timeout(2250);
         setScore(score + 1)
         let k = animationState['x'] - windowWidth
         setAnimationState({x:k});
@@ -36,12 +38,26 @@ function MainWrapper() {
             <motion.div className="main-container" animate={animationState} transition={{ duration: 1 }}>
             {
                 (elements.length > 1) && elements.map((item) => 
-                    <ImageElement name={item.name} followers={item.followers} handle={handle} side={item.side} logic={item.higher} prev={item.prev} image={item.image}/>
+                    <ImageElement name={item.name} followers={item.followers} handle={handle} side={item.side} logic={item.higher} prev={item.prev} image={item.image} transitionTime={item.transitionTime}/>
             )}
             </motion.div>
-            <div className="centered circle ">
-                <div className="centered">vs</div>
+            
+            <div className="centered">
+                <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                    type: "spring",
+                    stiffness: 250,
+                    damping: 20,
+                }}
+                >
+                    <div className="circle">
+                        <div className="centered">vs</div>
+                    </div>
+                </motion.div>
             </div>
+            <div className="source">Source: <font className="spotify">Spotify</font></div>
             <div className="score">Score: {score}</div>
         </div>        
     )

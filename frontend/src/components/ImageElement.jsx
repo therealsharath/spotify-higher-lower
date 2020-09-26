@@ -8,6 +8,10 @@ function ImageElement(props) {
         return new Promise(res => setTimeout(res, delay));
     }
 
+    const numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     const handleClick = async(e) => {
         setToggle(!isToggled);
         if(e === (props.followers > props.logic) || (props.logic === props.followers)) {
@@ -28,14 +32,14 @@ function ImageElement(props) {
     return(
         <div style={styles}>
             <img className="image" src={props.image} alt="Image1"/>
-            <ul className="centered">
-            <li className="artist-name">"{props.name}"</li>
-            <li className="has">has</li>
-            {isToggled && <li className="number"><Counter followers={props.followers}/></li>}
-            {!isToggled && <li className="button-container"><button className="custom-button" onClick={() => handleClick(true)}>Higher &nbsp;<font className="higher">◭</font></button></li> }
-            {!isToggled &&<li className="button-container"><button className="custom-button" onClick={() => handleClick(false)}>Lower  &nbsp;&nbsp;<font className="lower">◭</font></button></li> }
-            {!isToggled ? <li className="has button-buffer">Spotify followers than {props.prev}</li> : <li className="has button-buffer">Spotify followers</li>}
-            </ul>
+            <div className="centered">
+                <div className="artist-name">{props.name}</div>
+                <div className="has">has</div>
+                {isToggled && <div className="number">{props.transitionTime !== 0 ? <Counter followers={props.followers}/> : numberWithCommas(props.followers)}</div>}
+                {!isToggled && <div className="button-container"><button className="custom-button" onClick={() => handleClick(true)}>Higher &nbsp;<font className="higher">◭</font></button></div> }
+                {!isToggled &&<div className="button-container"><button className="custom-button" onClick={() => handleClick(false)}>Lower  &nbsp;&nbsp;<font className="lower">◭</font></button></div> }
+                {!isToggled ? <div className="has button-buffer"><font className="spotify">Spotify</font> followers than {props.prev}</div> : <div className="has button-buffer"><font className="spotify">Spotify </font>followers</div>}
+            </div>
         </div>
     )
 }

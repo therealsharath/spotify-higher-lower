@@ -40,16 +40,14 @@ const fetchArtist = async(token, number) => {
 export async function getArtist(elements, number) {
     let token = await getToken()
     let artist = await fetchArtist(token, number)
-    console.log(artist)
     let newElements = [...elements]
-
     if (elements.length < 1) {
         let name = artist['name']
         let followers = artist['followers']['total']
         let higher = 0
         let prev = null
         let image = artist['images'][0]['url']
-        let newArtist = {name: name,followers:followers, side:true, higher:higher, prev:prev, image:image}
+        let newArtist = {name: name,followers:followers, side:true, higher:higher, prev:prev, image:image, transitionTime:0}
         newElements.push(newArtist)
         artist = await fetchArtist(token, number+1)
     }
@@ -57,13 +55,9 @@ export async function getArtist(elements, number) {
     let name = artist['name']
     let followers = artist['followers']['total']
     let higher = newElements[newElements.length-1]['followers']
-    let prev = newElements[newElements.length-1]['name']
+    let prev = newElements[newElements.length-1]['name'].split(/\s+/)[0];
     let image = artist['images'][0]['url']
     let newArtist = {name: name,followers:followers, side:false, higher:higher, prev:prev, image:image}
     newElements.push(newArtist)
-    console.log(newElements)
     return newElements;
 }
-
-// {name:'A', followers:230000, side:true, higher:0, prev:'none', image:image},
-// {name:'B',followers:220000, side:false, higher:230000, prev:'A', image:image}
