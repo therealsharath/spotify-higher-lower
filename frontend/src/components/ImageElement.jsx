@@ -15,18 +15,17 @@ function ImageElement(props) {
     const handleClick = async(e) => {
         setToggle(!isToggled);
         if(e === (props.followers > props.logic) || (props.logic === props.followers)) {
-            props.handle()
+            await timeout(2000)
+            props.handle(true)
         } else {
-            await timeout(3000)
-            window.location.href = "/";
+            await timeout(2000)
+            props.handle(false)
         }
     }
-
-    const windowWidth = window.screen.width/2
     
     const styles = {
-        maxWidth: windowWidth,
         position: "relative",
+        minHeight: window.innerHeight/2
     };
 
     return(

@@ -1,37 +1,75 @@
 import React , { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ImageElement from './ImageElement.jsx';
 import { getArtist } from './GetArtist';
+import tick from './tick.png';
+import cross from './cross.png';
 
 function MainWrapper() {
     const [elements, setElements] = useState([])
     const [animationState, setAnimationState] = useState({ x: 0 })
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth/2)
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight/2)
     const [score, setScore] = useState(0)
+    const [isMobile, setMobile] = useState(window.innerWidth<600)
+    const [isTransition, setTransition] = useState(false)
+    const [isRight, setRight] = useState(false)
 
     useEffect(() => {
         async function redemption() {
             let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
             setElements(response)
         }
-        if(elements.length < 10) {
+        if(elements.length < 5) {
             redemption()
         }
-    },[elements])
+        if(isMobile && elements.length < 1) {
+            setAnimationState({ y: 0 })
+        }
+        if(window.innerWidth/2 !== windowWidth) {
+            setWindowWidth(window.innerWidth/2);
+            setMobile(window.innerWidth<600)
+        }
+        if(window.innerHeight/2 !== windowHeight) {
+            setWindowHeight(window.innerHeight/2);
+        }
+    },[elements,isMobile,windowHeight,windowWidth])
 
-    const timeout = (delay) => {
+    const timeout = (delay,choice) => {
+        setTransition(true)
+        setRight(choice)
         return new Promise(res => setTimeout(res, delay));
     }
-    
-    const windowWidth = window.innerWidth/2
 
-    const handle = async() => {
-        const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1))
-        setElements(response)
-        await timeout(2250);
-        setScore(score + 1)
-        let k = animationState['x'] - windowWidth
-        setAnimationState({x:k});
+    const handle = async(choice) => {
+        if (choice) {
+            const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1))
+            setElements(response)
+            await timeout(2000,choice);
+            setScore(score + 1)
+            if(!isMobile) {
+                setAnimationState({ x:0-windowWidth*(score+1) });
+            } else {
+                setAnimationState({ y:0-windowHeight*(score+1) });
+            }
+            setRight(false)
+            setTransition(false)
+        } else {
+            await timeout(2000,choice);
+            window.location.href = "/";
+        }
     }
+
+    const variants = {
+        initial: {
+            scale: 0,
+            opacity: 0,
+        },
+        final: {
+            scale: 1,
+            opacity: 1,
+        }
+    };
 
     return(
         <div className="main-container">
@@ -43,19 +81,26 @@ function MainWrapper() {
             </motion.div>
             
             <div className="centered">
-                <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                    type: "spring",
-                    stiffness: 250,
-                    damping: 20,
-                }}
-                >
+                {!isTransition ? <AnimatePresence>
                     <div className="circle">
                         <div className="centered">vs</div>
                     </div>
-                </motion.div>
+                </AnimatePresence> :
+                <motion.div
+                    initial={{scale:0}}
+                    animate={!isTransition ? "initial" : "final"}
+                    variants={variants}
+                    transition={{ duration: 1 }}
+                >
+                    { isRight ?
+                        <div className="circle right">
+                            <img src={tick} className="centered tick" alt="right"/>
+                        </div> :
+                        <div className="circle wrong">
+                            <img src={cross} className="centered tick" alt="wrong"/>
+                        </div>
+                    }
+                </motion.div>}
             </div>
             <div className="source">Source: <font className="spotify">Spotify</font></div>
             <div className="score">Score: {score}</div>

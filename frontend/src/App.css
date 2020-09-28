@@ -28,8 +28,8 @@
 
 .image {
   height:100vh;
-  width: 50.0001vw;
-  filter: brightness(40%); 
+  width: 50vw;
+  filter: brightness(30%); 
 }
 
 .centered {
@@ -68,6 +68,16 @@
   font-size: 2.25vw;
 }
 
+.right {
+  background: #1DB954;
+  color: #fafafa;
+}
+
+.tick {
+  width: 3.5vw;
+  height: 3.5vw;
+}
+
 .wrong {
   background: red;
 }
@@ -79,6 +89,10 @@
   position: absolute;
   top: 92.5%;
   right: 1%;
+}
+
+.image-container {
+  position: "relative",
 }
 
 .custom-button {
@@ -135,3 +149,39 @@
 .spotify {
   color: #1DB954;
 }
+
+@media only screen and (max-width: 600px) {
+  .main-container {
+    flex-direction: column;
+    padding: 0;
+  }
+  .image {
+    max-height:50vh;
+    min-width: 100vw;
+    filter: brightness(40%);
+  }
+  .circle {
+    padding: 5vw;
+    font-size: 3.5vw;
+  }
+  .custom-button {
+    border-width: 1.5px;
+    font-size: 0.25vw;
+  }
+  .button-buffer {
+    padding-top: 5px;
+  }
+  .button-container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .score {
+    top: 96%;
+    font-size: 2.5vw;
+  }
+  .source {
+    top: 98%;
+  }
+}
+
+/* https://codepen.io/angelmm/pen/grdXYe */
