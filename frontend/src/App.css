@@ -79,7 +79,7 @@
 }
 
 .wrong {
-  background: red;
+  background: #d64747;
 }
 
 .score {
@@ -99,7 +99,7 @@
   background-color: rgba(0,0,0,0);
   color: yellow;
   padding: 1vw 5vw;
-  border-radius: 30px;
+  border-radius: 3vw;
   border: solid;
   border-width: 3px;
   border-color: #fafafa;
@@ -147,7 +147,101 @@
 }
 
 .spotify {
+  text-decoration: none;
   color: #1DB954;
+}
+
+.home {
+  height: 100vh;
+  width: 100vw;
+  background-color: #282c34;
+  color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vw;
+}
+
+.home-button {
+  background-color: rgba(0,0,0,0);
+  color: #fafafa;
+  padding: 1vw 4vw;
+  border-radius: 3vw;
+  border: solid;
+  border-width: 3px;
+  border-color: #1DB954;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25vw;
+  display: flex;
+}
+
+.home-button:hover {
+  color:  rgba(0,0,0,1);
+  background-color: #1DB954;
+  cursor: pointer;
+}
+
+.prompt-container {
+  padding: 1vw;
+}
+
+.prompt {
+  font-size: 1vw;
+}
+
+.over-buttons {
+  display: flex;
+  width: 75vw;
+  justify-content: center;
+  align-items: space-around;
+  padding-bottom: 1vw;
+}
+
+.no-buffer {
+  padding-top: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #fcff59;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.over-bg-image {
+  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),url(./components/images/tapes.jpg);
+}
+
+.home-bg-image {
+  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),url(./components//images/home-cover.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.right-source {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75vw;
+  position: absolute;
+  top: 96.5%;
+  left: 1%;
+}
+
+.home-buttons {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: space-around;
+  padding: 1vw;
+}
+
+.logo {
+  max-height: 50vw;
+  max-width: 50vw;
+  filter: brightness(75%);
 }
 
 @media only screen and (max-width: 600px) {
@@ -164,9 +258,20 @@
     padding: 5vw;
     font-size: 3.5vw;
   }
+  .artist-name {
+    font-size: 5vw;
+  }
+  .has {
+    font-size: 3vw;
+  }
+  .number {
+    font-size: 6vw;
+  }
   .custom-button {
     border-width: 1.5px;
-    font-size: 0.25vw;
+    font-size: 3vw;
+    padding: 2vw 7vw;
+    border-radius: 10vw;
   }
   .button-buffer {
     padding-top: 5px;
@@ -175,6 +280,28 @@
     padding-top: 5px;
     padding-bottom: 5px;
   }
+  .home {
+    font-size: 5vw;
+  }
+  .home-button {
+    border-width: 1.5px;
+    font-size: 3vw;
+    padding: 2vw 7vw;
+    border-radius: 10vw;
+  }
+  .home-buttons {
+    padding: 4vw;
+  }
+  .over-buttons {
+    width: 100vw;
+    padding-bottom: 2vw;
+  }
+  .prompt-container {
+    padding: 2vw;
+  }
+  .prompt {
+    font-size: 3vw;
+  }
   .score {
     top: 96%;
     font-size: 2.5vw;
@@ -182,6 +309,10 @@
   .source {
     top: 98%;
   }
+  .right-source {
+    top: 98%;
+  }
+  .logo {
+    padding: 2vw;
+  }
 }
-
-/* https://codepen.io/angelmm/pen/grdXYe */

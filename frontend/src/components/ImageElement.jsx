@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Counter from './Counter.jsx';
 
 function ImageElement(props) {
-    const [isToggled, setToggle] = useState(props.side)
+    const [isToggled, setToggle] = useState(props.side);
 
     const timeout = (delay) => {
         return new Promise(res => setTimeout(res, delay));
@@ -15,11 +15,11 @@ function ImageElement(props) {
     const handleClick = async(e) => {
         setToggle(!isToggled);
         if(e === (props.followers > props.logic) || (props.logic === props.followers)) {
-            await timeout(2000)
-            props.handle(true)
+            await timeout(1750);
+            props.handle(true);
         } else {
-            await timeout(2000)
-            props.handle(false)
+            await timeout(1750);
+            props.handle(false);
         }
     }
     

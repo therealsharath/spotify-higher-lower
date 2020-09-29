@@ -2,33 +2,33 @@ import React , { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ImageElement from './ImageElement.jsx';
 import { getArtist } from './GetArtist';
-import tick from './tick.png';
-import cross from './cross.png';
+import tick from './images/tick.png';
+import cross from './images/cross.png';
 
-function MainWrapper() {
-    const [elements, setElements] = useState([])
-    const [animationState, setAnimationState] = useState({ x: 0 })
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth/2)
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight/2)
-    const [score, setScore] = useState(0)
-    const [isMobile, setMobile] = useState(window.innerWidth<600)
-    const [isTransition, setTransition] = useState(false)
-    const [isRight, setRight] = useState(false)
+function MainWrapper(props) {
+    const [elements, setElements] = useState([]);
+    const [animationState, setAnimationState] = useState({ x: 0 });
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth/2);
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight/2);
+    const [score, setScore] = useState(0);
+    const [isMobile, setMobile] = useState(window.innerWidth<600);
+    const [isTransition, setTransition] = useState(false);
+    const [isRight, setRight] = useState(false);
 
     useEffect(() => {
         async function redemption() {
             let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
-            setElements(response)
+            setElements(response);
         }
         if(elements.length < 5) {
-            redemption()
+            redemption();
         }
         if(isMobile && elements.length < 1) {
-            setAnimationState({ y: 0 })
+            setAnimationState({ y: 0 });
         }
         if(window.innerWidth/2 !== windowWidth) {
             setWindowWidth(window.innerWidth/2);
-            setMobile(window.innerWidth<600)
+            setMobile(window.innerWidth<600);
         }
         if(window.innerHeight/2 !== windowHeight) {
             setWindowHeight(window.innerHeight/2);
@@ -36,27 +36,27 @@ function MainWrapper() {
     },[elements,isMobile,windowHeight,windowWidth])
 
     const timeout = (delay,choice) => {
-        setTransition(true)
-        setRight(choice)
+        setTransition(true);
+        setRight(choice);
         return new Promise(res => setTimeout(res, delay));
     }
 
     const handle = async(choice) => {
         if (choice) {
-            const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1))
-            setElements(response)
+            const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1));
+            setElements(response);
             await timeout(2000,choice);
-            setScore(score + 1)
+            setScore(score + 1);
             if(!isMobile) {
                 setAnimationState({ x:0-windowWidth*(score+1) });
             } else {
                 setAnimationState({ y:0-windowHeight*(score+1) });
             }
-            setRight(false)
-            setTransition(false)
+            setRight(false);
+            setTransition(false);
         } else {
             await timeout(2000,choice);
-            window.location.href = "/";
+            props.handle("over",score)
         }
     }
 
