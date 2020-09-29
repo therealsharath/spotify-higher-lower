@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const getToken = async() => {
     let url = "https://accounts.spotify.com/api/token";
-    let auth = 'Basic ' + btoa('fb4e47147f94480ea653c98a3d510179:9f88210bae2841ae8c608270ab2e1361');
+    let auth = 'Basic ' + btoa(process.env.REACT_APP_SPOTIFY_KEY);
     var qs = require('qs');
     var data = qs.stringify({
     'grant_type': 'client_credentials' 
