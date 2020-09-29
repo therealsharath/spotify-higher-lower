@@ -21,6 +21,9 @@ function App() {
     } else if (e === "new") {
       setIsOver(false);
       setIsGame(true);
+    } else if (e === "menu") {
+      setIsHome(true);
+      setIsOver(false);
     }
   }
 
@@ -29,9 +32,6 @@ function App() {
       {isHome && <Home handle={handle}/>}
       {isGame && <MainWrapper handle={handle}/>}
       {isOver && <Over handle={handle} score={score}/>}
-      {/* <Home handle={handle}/> */}
-      {/* <Over  handle={handle} score={score}/> */}
-      {/* <MainWrapper handle={handle}/> */}
     </div>
   );
 }

@@ -12,7 +12,7 @@ function Over(props) {
                 </div>
                 <div className="over-buttons">
                     <div className="button-container"><button className="home-button" onClick={() => props.handle("new")}>Play Again 😁</button></div>
-                    <div className="button-container"><button className="home-button" onClick={() => window.location.href = "/"}> Back to Menu</button></div>
+                    <div className="button-container"><button className="home-button" onClick={() => props.handle("new")}> Back to Menu</button></div>
                 </div>
                 <div className="prompt">Inspired by <a className="link" href="http://www.higherlowergame.com/" target="blank">@HigherLowerGame</a></div>
             </div>
