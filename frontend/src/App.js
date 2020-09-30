@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainWrapper from './components/MainWrapper.jsx';
 import Home from './components/Home.jsx';
 import Over from './components/Over.jsx';
+import {getArtist} from './components/GetArtist.js';
 import './App.css';
 
 function App() {
@@ -9,6 +10,17 @@ function App() {
   const [isGame, setIsGame] = useState(false)
   const [isOver, setIsOver] = useState(false)
   const [score, setScore] = useState(0)
+  const [elements, setElements] = useState([])
+
+  useEffect(() => {
+    async function redemption() {
+      let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
+      setElements(response);
+    }
+    if(elements.length < 5) {
+        redemption();
+    }
+  },[elements])
 
   const handle = (e,score) => {
     if(e === "begin") {
@@ -18,6 +30,7 @@ function App() {
       setIsGame(false);
       setIsOver(true);
       setScore(score)
+      setElements([])
     } else if (e === "new") {
       setIsOver(false);
       setIsGame(true);
@@ -30,7 +43,7 @@ function App() {
   return (
     <div className="App">
       {isHome && <Home handle={handle}/>}
-      {isGame && <MainWrapper handle={handle}/>}
+      {isGame && <MainWrapper handle={handle} elements={elements}/>}
       {isOver && <Over handle={handle} score={score}/>}
     </div>
   );

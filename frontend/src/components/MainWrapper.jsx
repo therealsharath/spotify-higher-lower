@@ -6,7 +6,7 @@ import tick from './images/tick.png';
 import cross from './images/cross.png';
 
 function MainWrapper(props) {
-    const [elements, setElements] = useState([]);
+    const [elements, setElements] = useState(props.elements);
     const [animationState, setAnimationState] = useState({ x: 0 });
     const [windowWidth, setWindowWidth] = useState(window.innerWidth/2);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight/2);
@@ -16,13 +16,6 @@ function MainWrapper(props) {
     const [isRight, setRight] = useState(false);
 
     useEffect(() => {
-        async function redemption() {
-            let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
-            setElements(response);
-        }
-        if(elements.length < 5) {
-            redemption();
-        }
         if(isMobile && elements.length < 1) {
             setAnimationState({ y: 0 });
         }
@@ -33,7 +26,7 @@ function MainWrapper(props) {
         if(window.innerHeight/2 !== windowHeight) {
             setWindowHeight(window.innerHeight/2);
         }
-    },[elements,isMobile,windowHeight,windowWidth])
+    },[isMobile,windowHeight,windowWidth])
 
     const timeout = (delay,choice) => {
         setTransition(true);
