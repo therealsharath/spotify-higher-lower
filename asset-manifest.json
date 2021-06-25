@@ -1,26 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.992f67ec.chunk.css",
-    "main.js": "/static/js/main.21b50d97.chunk.js",
-    "main.js.map": "/static/js/main.21b50d97.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.c8a21426.js",
-    "runtime-main.js.map": "/static/js/runtime-main.c8a21426.js.map",
-    "static/js/2.8941a025.chunk.js": "/static/js/2.8941a025.chunk.js",
-    "static/js/2.8941a025.chunk.js.map": "/static/js/2.8941a025.chunk.js.map",
+    "main.css": "/static/css/main.8f5aa10a.chunk.css",
+    "main.js": "/static/js/main.168ae8bd.chunk.js",
+    "main.js.map": "/static/js/main.168ae8bd.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cc85cbe0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cc85cbe0.js.map",
+    "static/js/2.02177a85.chunk.js": "/static/js/2.02177a85.chunk.js",
+    "static/js/2.02177a85.chunk.js.map": "/static/js/2.02177a85.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.15c862cd35c2825bf6f0228f68d1df2c.js": "/precache-manifest.15c862cd35c2825bf6f0228f68d1df2c.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.992f67ec.chunk.css.map": "/static/css/main.992f67ec.chunk.css.map",
-    "static/js/2.8941a025.chunk.js.LICENSE.txt": "/static/js/2.8941a025.chunk.js.LICENSE.txt",
-    "static/media/cross.png": "/static/media/cross.b566df37.png",
-    "static/media/App.css": "/static/media/tapes.dbe1d095.jpg",
-    "static/media/spotify-high-low.png": "/static/media/spotify-high-low.afef272f.png",
-    "static/media/tick.png": "/static/media/tick.8eb898ca.png"
+    "static/css/main.8f5aa10a.chunk.css.map": "/static/css/main.8f5aa10a.chunk.css.map",
+    "static/js/2.02177a85.chunk.js.LICENSE.txt": "/static/js/2.02177a85.chunk.js.LICENSE.txt",
+    "static/media/cross.4fa23083.png": "/static/media/cross.4fa23083.png",
+    "static/media/App.css": "/static/media/tapes.e6d9c84a.jpg",
+    "static/media/spotify-high-low.6a159f6c.png": "/static/media/spotify-high-low.6a159f6c.png",
+    "static/media/tick.05a462ce.png": "/static/media/tick.05a462ce.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c8a21426.js",
-    "static/js/2.8941a025.chunk.js",
-    "static/css/main.992f67ec.chunk.css",
-    "static/js/main.21b50d97.chunk.js"
+    "static/js/runtime-main.cc85cbe0.js",
+    "static/js/2.02177a85.chunk.js",
+    "static/css/main.8f5aa10a.chunk.css",
+    "static/js/main.168ae8bd.chunk.js"
   ]
 }
