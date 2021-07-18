@@ -16,7 +16,7 @@ function MainWrapper(props) {
     const [isRight, setRight] = useState(false);
 
     useEffect(() => {
-        if(isMobile && elements.length < 1) {
+        if(isMobile && elements && elements.length < 1) {
             setAnimationState({ y: 0 });
         }
         if(window.innerWidth/2 !== windowWidth) {
@@ -26,7 +26,7 @@ function MainWrapper(props) {
         if(window.innerHeight/2 !== windowHeight) {
             setWindowHeight(window.innerHeight/2);
         }
-    },[isMobile,windowHeight,windowWidth])
+    },[isMobile,windowHeight,windowWidth,elements])
 
     const timeout = (delay,choice) => {
         setTransition(true);
@@ -36,7 +36,7 @@ function MainWrapper(props) {
 
     const handle = async(choice) => {
         if (choice) {
-            const response = await getArtist(elements, Math.floor((Math.random() * 250) + 1));
+            const response = await getArtist(elements);
             setElements(response);
             await timeout(2000,choice);
             setScore(score + 1);

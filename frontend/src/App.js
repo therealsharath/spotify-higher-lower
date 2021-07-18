@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     async function redemption() {
-      let response = await getArtist(elements,Math.floor((Math.random() * 250) + 1));
+      let response = await getArtist(elements);
       setElements(response);
     }
     if(elements.length < 5) {
