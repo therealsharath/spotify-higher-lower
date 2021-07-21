@@ -1,4 +1,4 @@
-import { fetchArtistId } from './fetchArtistId';
+import { fetchArtistId } from './fetchArtistId.js';
 import axios from 'axios';
 
 const getToken = async() => {
