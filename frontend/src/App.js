@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MainWrapper from './components/MainWrapper.jsx';
 import Home from './components/Home.jsx';
 import Over from './components/Over.jsx';
-import {getArtist} from './components/GetArtist.js';
+import {getArtist} from './functions/getArtist.js';
 import './App.css';
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
       let response = await getArtist(elements);
       setElements(response);
     }
-    if(elements.length < 5) {
-        redemption();
+    if(elements.length < 3) {
+      redemption();
     }
   },[elements])
 

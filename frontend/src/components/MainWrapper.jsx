@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ImageElement from './ImageElement.jsx';
-import { getArtist } from './GetArtist';
+import { getArtist } from '../functions/getArtist';
 import tick from './images/tick.png';
 import cross from './images/cross.png';
 
