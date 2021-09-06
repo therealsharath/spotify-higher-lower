@@ -18,13 +18,14 @@ export async function fetchArtistId(docId) {
             await firebase.app()
         }
 
-        var db = firebase.firestore();
-        const doc = await db.collection('artists').doc(docId).get();
-        if (!doc.exists) {
-            return null
-        } else {
-            return doc.data();
+        let db = firebase.firestore();
+        let doc;
+        
+        while(!doc) {
+            doc = await db.collection('artists').doc(docId).get();
         }
+
+        return doc.data();
         
     } catch(error) {
         console.error(error)
